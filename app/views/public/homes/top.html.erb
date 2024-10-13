@@ -1,0 +1,8 @@
+<br>
+<% if current_user %>
+  <%= link_to "sign_out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'sign_in', new_user_session_path %>
+<% end %>
+<h1>Topページ</h1>
+
