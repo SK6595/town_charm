@@ -47,7 +47,10 @@
     </form>
   </div>
 </nav>
-    </header>
+  <% if user_signed_in? %>
+
+  <% end %>
+  </header>
     <% flash.each do |type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" )%>
     <% end %>
