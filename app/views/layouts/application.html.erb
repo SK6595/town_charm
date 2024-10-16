@@ -50,11 +50,15 @@
   <% if user_signed_in? %>
 
   <% end %>
+    <%= render "layouts/navigation" %>
   </header>
     <% flash.each do |type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" )%>
     <% end %>
 
-  <%= yield %>
+    <div class="container">
+      <%= render "layouts/flash_message" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,13 +1,24 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
-  <p>タイトル</p>
-  <span><%=link_to post_path(post.user)%></span>
-  <%= link_to user_path(book.user) do %>
-            
+  <!--<p>タイトル</p>-->
+  <div>
+    <%=link_to post.title, post_path(post.id)%>
+  </div>
+  <p><%= post.body %></p>
+  <!--<div>-->
+  <!-- <#%= link_to post_path(post.id) do %>-->
+  <!--  <#%= image_tag post.get_image %>-->
+  <!-- <#% end %>-->
+  <!--</div>-->
+  <%#= link_to user_path(post.user) do %>
+    <%#= post.user.name %>
+  <%# end %>
   <p>画像</p>
-    <% if post.image.attached? %>
-      <%= image_tag post.image, size: "200x200" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "200x200" %>
-    <% end %>
+  <% if post.image.attached? %>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_image, size: "300x300" %>
+  <% end %>  
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
+<% end %>

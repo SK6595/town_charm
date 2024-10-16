@@ -9,6 +9,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])  
   end
 
   def create
@@ -17,11 +18,12 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     # 3. データをデータベースに保存するためのsaveメソッド実行
     @post.save
-    # 4. トップ画面へリダイレクト
-    redirect_to posts_path
+    # 4. 詳細画面へリダイレクト
+    redirect_to post_path(@post.id)
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
