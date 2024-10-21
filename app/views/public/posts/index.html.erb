@@ -21,4 +21,5 @@
   <% else %>
     <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
+  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
 <% end %>
