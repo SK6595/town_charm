@@ -1,11 +1,17 @@
 class Post < ApplicationRecord
   has_one_attached :image
+
+  validates :title, presence: true
+  validates :body, presence: true
+
   belongs_to :user
-  has_many :comments, dependent: :destroy
-  #belonngs_to ;userと同義
+  #belonngs_to :userと同義
   #def user
   #  User.find(self.user_id)
   #end
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
 
   def get_image
     unless image.attached?
@@ -15,4 +21,9 @@ class Post < ApplicationRecord
     #byebug
     self.image
   end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 end

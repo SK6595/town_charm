@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     get "homes/about" => "homes#about", as: 'about'
     resources :posts do
       resources :comments, only: [:create, :destroy]
-      resources :favorites
+      resource :favorite, only:[:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 end

@@ -1,25 +1,61 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/posts/share', post: @post_new, user: @user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>タウンチャーム</h2>
+      <table class="table">
+        <tr>
+          <th>
+
+          </th>
+          <th>
+            タイトル
+          </th>
+          <th>
+            ご意見
+          </th>
+        </tr>
+        <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to user_path(@user) do %>
+            <%= image_tag post.user.get_profile_image(80, 80) %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.id) do %>
+              <%= post.title %>
+            <% end %>
+          </td>
+          <td>
+            <%= post.body %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
 <!-- ユーザーの詳細 -->
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-
-
-
+<!--<div>-->
+<!--  <h3><%#= @user.name %></h3>-->
+<!--  <%#= image_tag @user.get_profile_image(100,100) %>-->
+<!--  <%# if @user.id == current_user.id %>-->
+<!--    <p><%#= link_to "プロフィール編集", edit_user_path(@user) %></p>-->
+<!--  <%# end %>-->
+<!--</div>-->
  <!--ユーザーの投稿一覧 -->
-<% @posts.each do |post| %>
-<div>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image %>
-  <% end %>
+<!--<%# @posts.each do |post| %>-->
+<!--<div>-->
+<!--  <%#= link_to post_path(post.id) do %>-->
+<!--    <%#= image_tag post.get_image %>-->
+<!--  <%# end %>-->
   <!--<p>投稿ユーザー画像：<%#= image_tag post.user.get_profile_image(100,100) %></p>-->
-  <p>本文：<%= post.body %></p>
+<!--  <p>本文：<%#= post.body %></p>-->
   <!--<p>ユーザーネーム：<%#= post.user.name %></p>-->
-  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
-</div>
-<% end %>
-
-
+<!--  <p><%#= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>-->
+<!--</div>-->
+<!--<%# end %>-->

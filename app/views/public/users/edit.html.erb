@@ -1,7 +1,18 @@
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2>プロフィール編集</h2>
 <%= form_with model: @user do |f| %>
   <label for="inputName">Name</label>
   <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+  <label for="inputEmail">Email</label>
+  <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder:"メール"%>
   <label for="inputImage">ProfileImage</label>
   <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
   <%= f.submit "変更を保存" %>

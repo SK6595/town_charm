@@ -11,69 +11,93 @@
   </head>
 
   <body>
-    <header class="">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to '投稿フォーム', new_post_path %>
-    </li>
-    <li>
-      <%= link_to 'マイページ', user_path(current_user.id) %>
-    </li>
-    <li>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    </li>
-  <% else %>
-    <li>
-      <%= link_to "新規登録", new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "ログイン", new_user_session_path %>
-    </li>
-  <% end %>
-    <%= render "layouts/navigation" %>
-  </header>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+      <%= link_to root_path , class:"navbar-brand" do %>
+        <span>タウンチャーム</span>
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li>
+          <!-- <i class="fa-solid fa-home"></i> Font Awesome fontawesome.com -->
+          <%= link_to user_path(current_user.id), class:"nav-link text-light" do %>
+            <i class="fa-solid fa-home"></i> ホーム
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_path, class:"nav-link text-light" do %>
+            <i class="fa-solid fa-users"></i> ユーザー一覧
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-book-open"></i> Font Awesome fontawesome.com -->
+          <%= link_to posts_path, class:"nav-link text-light" do %>
+            <i class="fa-solid fa-city"></i> 投稿一覧
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-sign-out-alt"></i> Font Awesome fontawesome.com -->
+          <%= link_to destroy_user_session_path, class:"nav-link text-light", method: :delete do %>
+            <i class="fa-solid fa-sign-out-alt"></i> ログアウト
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <!-- <i class="fa-solid fa-home"></i> Font Awesome fontawesome.com -->
+          <%= link_to root_path, class:"nav-link text-light" do %>
+           <i class="fa-solid fa-home"></i> ホーム
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-link"></i> Font Awesome fontawesome.com -->
+          <%= link_to about_path, class:"nav-link text-light" do %>
+           <i class="fa-solid fa-link"></i> About
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-user-plus"></i> Font Awesome fontawesome.com -->
+          <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+            <i class="fa-solid fa-user-plus"></i> 新規登録
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-sign-in-alt"></i> Font Awesome fontawesome.com -->
+          <%= link_to new_user_session_path, class:"nav-link text-light" do%>
+            <i class="fa-solid fa-right-to-bracket"></i> ログイン
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+      </div>
+      </div>
+      </nav>
+    </header>
     <% flash.each do |type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" )%>
     <% end %>
-
-    <div class="container">
-      <%= render "layouts/flash_message" %>
+    <main>
       <%= yield %>
-    </div>
+    </main>
+    <footer>
+      <div class="container mt-5">
+	      <div class="row">
+  	      <div class="mx-auto">
+  		      <p><!--CopyRight-->TOWNCHARM</p> 
+  	      </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+

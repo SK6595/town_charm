@@ -5,6 +5,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @post = Post.new
     @posts = Post.all
   end
 
@@ -14,13 +15,20 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+ 
     #データを受け取り新規登録するためのインスタンス作成
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    @post.save
+    if @post.save
     # 4. 詳細画面へリダイレクト
-    redirect_to post_path(@post.id)
+      flash[:notice] = "投稿に成功しました。"
+      redirect_to post_path(@post.id)
+    else
+      flash.now[:alert] = "投稿に失敗しました。" #キーをalertに変更
+      @posts = Post.all
+      render :index
+    end
   end
 
   def edit
@@ -28,15 +36,18 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)  
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     post = Post.find(params[:id])  # データ（レコード）を1件取得
     post.destroy  # データ（レコード）を削除
-    redirect_to '/posts'  # 投稿一覧画面へリダイレクト  
+    redirect_to '/posts'  # 投稿一覧画面へリダイレクト
   end
 end
 

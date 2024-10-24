@@ -1,25 +1,54 @@
-<h1>投稿一覧</h1>
-<% @posts.each do |post| %>
-  <!--<p>タイトル</p>-->
-  <div>
-    <%=link_to post.title, post_path(post.id)%>
-  </div>
-  <p><%= post.body %></p>
-  <!--<div>-->
-  <!-- <#%= link_to post_path(post.id) do %>-->
-  <!--  <#%= image_tag post.get_image %>-->
-  <!-- <#% end %>-->
-  <!--</div>-->
-  <%#= link_to user_path(post.user) do %>
-    <%#= post.user.name %>
-  <%# end %>
-  <p>画像</p>
-  <% if post.image.attached? %>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image, size: "300x300" %>
-  <% end %>  
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件の 'error' が発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'share', post: @post, user: current_user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>投稿一覧</h2>
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th></th>
+          <th>
+            氏名
+          </th>
+          <th>
+            タイトル
+          </th>
+          <th>
+            ご意見
+          </th>
+        </tr>
+        <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to user_path(post.user) do %>
+            <%= image_tag post.user.get_profile_image(80, 80) %>
+            <% end %>
+          </td>
+          <td>
+            <%#= link_to user_path(post.user) do %>
+            <%= post.user.name %>
+            <%# end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.id) do %>
+              <%= post.title %>
+            <% end %>
+          </td>
+          <td>
+            <%= post.body %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
