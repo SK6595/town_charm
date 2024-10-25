@@ -10,9 +10,10 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    flash.now[:alert] = "新規登録に失敗しました。"
+    super
+  end
 
   # GET /resource/edit
   # def edit

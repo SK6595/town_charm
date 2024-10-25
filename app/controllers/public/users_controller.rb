@@ -22,6 +22,11 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find_by_id(params[:id])
+    #@user = User.find_by(id: params[:id])
+    @user.destroy if @user
+    flash[:notice] = "削除しました。"
+    redurect_to root_path
   end
 
   private
