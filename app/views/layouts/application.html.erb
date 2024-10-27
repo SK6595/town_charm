@@ -27,8 +27,14 @@
           <% end %>
         </li>
         <li>
+          <!-- <i class="fa-solid fa-home"></i> Font Awesome fontawesome.com -->
+          <%= link_to about_path, class:"nav-link text-light" do %>
+            <i class="fa-solid fa-link"></i> About
+          <% end %>
+        </li>
+        <li>
           <%= link_to users_path, class:"nav-link text-light" do %>
-            <i class="fa-solid fa-users"></i> ユーザー一覧
+            <i class="fa-solid fa-users"></i> 投稿者一覧
           <% end %>
         </li>
         <li>
@@ -75,7 +81,7 @@
       </nav>
     </header>
     <% flash.each do |type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" )%>
+      <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" ) if message.present? %>
     <% end %>
     <main>
       <%= yield %>

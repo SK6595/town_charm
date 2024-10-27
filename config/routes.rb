@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       resource :favorite, only:[:create, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users do
+      collection do
+        get 're_sign_in', to: 'users#re_sign_in'
+        patch 're_sign_in', to: 'users#update_re_sign_in'
+      end
+    end
   end
 end

@@ -9,9 +9,13 @@ class Public::Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if !resource.is_active?
+      flash[:notice] = nil
+      flash[:alert] = "退会済みです"
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -26,7 +30,11 @@ class Public::Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    about_path
+    if resource.is_active?
+      about_path
+    else
+      re_sign_in_users_path
+    end
   end
 
   def after_sign_out_path_for(resource)
