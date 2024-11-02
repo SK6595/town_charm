@@ -29,7 +29,18 @@
 - 地域の街づくりについて他の人の投稿内容を知りたい時
 ​
 ## 設計書
-後ほど作成予定
+
+- UI Flows
+  https://drive.google.com/file/d/1ZSJ_Z0de5BmkourPERVEl4LTOEAM1JNj/view?usp=sharing
+
+- ER図
+  https://drive.google.com/file/d/1o-f0Fe-m0mTAEgEnmnqOJswPftvKJX1q/view?usp=sharing
+
+- テーブル定義書
+  https://docs.google.com/spreadsheets/d/1lOXIKVj6LcFRRuUdYjb9SGTraL224KZ2_ELT3kKpxvw/edit?usp=sharing
+
+- 詳細設計書
+　https://docs.google.com/spreadsheets/d/1jIXGRgQNiWeh3NzmBs0NVjI2Oq7iIno5EyWeZ5XBljo/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
