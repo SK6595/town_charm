@@ -53,7 +53,8 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    root_path
+      user = User.find_by(email: params[:user][:email])
+      user_path(user.id)
   end
 
   # The path used after sign up for inactive accounts.

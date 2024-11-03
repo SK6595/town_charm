@@ -31,7 +31,8 @@ class Public::Users::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
     if resource.is_active?
-      about_path
+      user = User.find_by(email: params[:user][:email])
+      user_path(user.id)
     else
       re_sign_in_users_path
     end
