@@ -21,7 +21,7 @@
 <% end %>
 
 <!--data-confirm": "本当に削除しますか？"と同義 -->
-<%= link_to "退会", user_path(@user), class: "btn btn-outline-danger mt-3 btn-block", method: :delete, data: { confirm: "本当に削除しますか？" } if @user.present? && @user == current_user %>
+
 
 <h2 class="mt-3">新規投稿</h2>
 

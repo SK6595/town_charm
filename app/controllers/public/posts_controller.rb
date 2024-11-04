@@ -1,5 +1,8 @@
 class Public::PostsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
@@ -15,7 +18,7 @@ class Public::PostsController < ApplicationController
   end
 
   def create
- 
+
     #データを受け取り新規登録するためのインスタンス作成
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -47,7 +50,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])  # データ（レコード）を1件取得
     post.destroy  # データ（レコード）を削除
-    redirect_to '/posts'  # 投稿一覧画面へリダイレクト
+    redirect_to user_path(post.user)  # 投稿一覧画面へリダイレクト
   end
 end
 
@@ -55,4 +58,9 @@ private
   # ストロングパラメータ
   def post_params
     params.require(:post).permit(:title, :body, :image)
+  end
+
+  def correct_user
+    @post = Post.find(params[:id])
+    redirect_to posts_path if current_user != @post.user
   end

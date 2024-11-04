@@ -1,9 +1,10 @@
 class Public::UsersController < ApplicationController
+
   before_action :authenticate_user!
   before_action :require_active_user, only: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  
-  def mypagegit 
+
+  def mypagegit
   end
 
   def index
@@ -39,10 +40,10 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "削除しました。"
     redirect_to new_user_registration_path
   end
-  
+
   def re_sign_in
   end
-  
+
   def update_re_sign_in
     current_user.update(is_active: true)
     flash[:notice] = "復活しました"
@@ -57,6 +58,6 @@ class Public::UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to root_path if current_user != @user
+    redirect_to user_path(current_user)if current_user != @user
   end
 end
