@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "homes#top"
+    resources :users, only: :destroy
   end
 
   scope module: :public do
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
       collection do
         get 're_sign_in', to: 'users#re_sign_in'
         patch 're_sign_in', to: 'users#update_re_sign_in'
+        get '/search', to: 'searches#search'
       end
     end
   end

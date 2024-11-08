@@ -1,7 +1,4 @@
 <h1>Admin::Homes#top</h1>
 <p>Find me in app/views/admin/homes/top.html.erb</p>
-<% if current_admin %>
-  <%= link_to "sign_out", destroy_admin_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'sign_in', new_admin_session_path %>
-<% end %>
+
+<%= render 'admin/homes/users', users: @users %>

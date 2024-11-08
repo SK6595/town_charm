@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>タウンチャーム</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/5f16f5d5a1.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+      <%= link_to root_path , class:"navbar-brand" do %>
+        <span>タウンチャーム管理者</span>
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+      <% if admin_signed_in? %>
+        <li>
+          <%= link_to admin_root_path, class:"nav-link text-dark" do %>
+            <i class="fa-solid fa-users"></i> 投稿者一覧
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-book-open"></i> Font Awesome fontawesome.com -->
+          <%= link_to "#", class:"nav-link text-dark" do %>
+            <i class="fa-solid fa-city"></i> コメント一覧
+          <% end %>
+        </li>
+        <li>
+          <!-- <i class="fa-solid fa-sign-out-alt"></i> Font Awesome fontawesome.com -->
+          <%= link_to destroy_admin_session_path, class:"nav-link text-dark", method: :delete do %>
+            <i class="fa-solid fa-sign-out-alt"></i> ログアウト
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+      </div>
+      </div>
+      </nav>
+    </header>
+    <% flash.each do |type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" ) if message.present? %>
+    <% end %>
+    <main>
+      <div class="container">
+        <%#= render 'public/searches/form' %>
+        <%= yield %>
+      </div>
+    </main>
+    <footer>
+      <div class="container mt-5">
+	      <div class="row">
+  	      <div class="mx-auto">
+  		      <p><!--CopyRight-->TOWNCHARM</p>
+  	      </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
