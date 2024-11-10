@@ -44,6 +44,12 @@
           <% end %>
         </li>
         <li>
+          <!-- <i class="fa-solid fa-book-open"></i> Font Awesome fontawesome.com -->
+          <%= link_to user_favorites_path(current_user), class:"nav-link text-light" do %>
+            <i class="fa-solid fa-heart"></i> Myいいね
+          <% end %>
+        </li>
+        <li>
           <!-- <i class="fa-solid fa-sign-out-alt"></i> Font Awesome fontawesome.com -->
           <%= link_to destroy_user_session_path, class:"nav-link text-light", method: :delete do %>
             <i class="fa-solid fa-sign-out-alt"></i> ログアウト
@@ -85,7 +91,9 @@
     <% end %>
     <main>
       <div class="container">
-        <%= render 'public/searches/form' %>
+        <% if user_signed_in? && request.path_info != '/admins/sign_in' %>
+          <%= render 'public/searches/form' %>
+        <% end %>
         <%= yield %>
       </div>
     </main>

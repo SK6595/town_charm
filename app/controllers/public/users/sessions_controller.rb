@@ -9,6 +9,7 @@ class Public::Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
+
   def create
     super
     if !resource.is_active?
@@ -41,4 +42,11 @@ class Public::Users::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     about_path
   end
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
+  end
+
 end

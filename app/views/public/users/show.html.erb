@@ -16,6 +16,9 @@
           <th>
             ご意見
           </th>
+          <th>
+            コメント件数
+          </th>
         </tr>
         <% @posts.each do |post| %>
         <tr>
@@ -31,6 +34,9 @@
           </td>
           <td>
             <%= post.body %>
+          </td>
+          <td>
+            <%= post.comments.count %>
           </td>
         </tr>
         <% end %>

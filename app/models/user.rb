@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   #validates :name, presence: true
   #validates :email, presence: true
 
@@ -19,8 +18,16 @@ class User < ApplicationRecord
   #  Post.where(user_id: self.id)
   #end
 
-
   has_one_attached :profile_image
+
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
+  end
 
   def get_profile_image(with,height)
    unless profile_image.attached?
