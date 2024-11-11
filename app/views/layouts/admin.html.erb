@@ -21,14 +21,13 @@
         <ul class="navbar-nav ml-auto">
       <% if admin_signed_in? %>
         <li>
-          <%= link_to admin_root_path, class:"nav-link text-dark" do %>
-            <i class="fa-solid fa-users"></i> 投稿者一覧
+          <%= link_to admin_posts_path, class:"nav-link text-dark" do %>
+            <i class="fa-solid fa-city"></i> 投稿一覧
           <% end %>
         </li>
         <li>
-          <!-- <i class="fa-solid fa-book-open"></i> Font Awesome fontawesome.com -->
-          <%= link_to "#", class:"nav-link text-dark" do %>
-            <i class="fa-solid fa-city"></i> コメント一覧
+          <%= link_to admin_root_path, class:"nav-link text-dark" do %>
+            <i class="fa-solid fa-users"></i> 投稿者一覧
           <% end %>
         </li>
         <li>

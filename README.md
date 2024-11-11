@@ -41,6 +41,14 @@
 
 - 詳細設計書：
 　https://docs.google.com/spreadsheets/d/1jIXGRgQNiWeh3NzmBs0NVjI2Oq7iIno5EyWeZ5XBljo/edit?usp=sharing
+
+## 使用素材
+
+- PhotoAC：
+
+- Canva：
+
+- Unsplash：
 ​
 ## 開発環境
 - OS：Linux(CentOS)

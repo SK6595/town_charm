@@ -1,0 +1,5 @@
+<ul>
+  <% User.find(params[:user_id]).followings.each do |f| %>
+   <li><%= f.name %></li>
+  <% end %>
+</ul>

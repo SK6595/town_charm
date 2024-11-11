@@ -1,0 +1,42 @@
+ <table class="table table-hover table-inverse">
+        <tr>
+          <th></th>
+          <th>
+            氏名
+          </th>
+          <th>
+            タイトル
+          </th>
+          <th>
+            ご意見
+          </th>
+          <th>
+            コメント件数
+          </th>
+        </tr>
+        <% posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to user_path(post.user) do %>
+            <%= image_tag post.user.get_profile_image(80, 80) %>
+            <% end %>
+          </td>
+          <td>
+            <%#= link_to user_path(post.user) do %>
+            <%= post.user.name %>
+            <%# end %>
+          </td>
+          <td>
+            <%= link_to admin_post_path(post.id) do %>
+              <%= post.title %>
+            <% end %>
+          </td>
+          <td>
+            <%= post.body %>
+          </td>
+          <td>
+            <%= post.comments.count %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
