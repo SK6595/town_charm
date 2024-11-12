@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       #:idがつかない、indexがないので6つのアクションになる
     end
 
+    resources :groups
+
     resources :users do
       resources :favorites, only:[:index]
       resource :relationships, only: [:create, :destroy]

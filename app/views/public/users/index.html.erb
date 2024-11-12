@@ -5,6 +5,8 @@
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>投稿者一覧</h2>
+      <%= link_to "グループを作成する", new_group_path %> |
+      <%= link_to "グループ一覧", groups_path %>
       <%= render 'public/users/users', users: @users %>
     </div>
   </div>
