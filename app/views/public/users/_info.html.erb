@@ -1,5 +1,5 @@
 <table class='table'>
-  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+  <tr><%= image_tag user.get_profile_image(100, 100), size:'100x100' %></tr>
   <tr>
 	  <th>name</th>
 	  <th><%= user.name %></th>
@@ -17,7 +17,7 @@
     <th><%= link_to user.followers.count, user_followers_path(user) %></th>
   </tr>
 </table>
-　
+
 <div class='row'>
   <% if current_user != user %>
     <td><%= render "relationships/btn", user: user %></td>

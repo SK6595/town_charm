@@ -9,13 +9,13 @@
   <tbody>
     <% groups.each do |group| %>
       <tr>
-        <td><%= image_tag group.get_image, size: '50x50' %></td>
+        <td><%= image_tag group.image, size: '50x50' if group.image.attached? %></td>
         <td><%= group.name %></td>
         <td><%= link_to 'Show', group, class: "group_#{group.id}" %></td>
-        <% if group.is_owned_by?(current_user) %>
+        <%# if group.is_owned_by?(current_user) %>
           <td><%= link_to 'Edit', edit_group_path(group), class: "group_#{group.id}" %></td>
-        <% end %>
+        <%# end %>
       </tr>
     <% end %>
   </tbody>
-</table> 
+</table>
