@@ -2,25 +2,34 @@
   <%= render 'layouts/errors', obj: @post %>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>User info</h2>
-      <%= render 'public/users/info', user: current_user %>
-      <h2 class="mt-3">New book</h2>
-      <%= render 'public/posts/form', post: @post %>
+       <%= render 'public/posts/share', post: @post, user: current_user %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Group Detail</h2>
+      <h2>グループ詳細</h2>
       <table class='table table-hover table-inverse'>
         <tr>
           <td><%= image_tag @group.image, size: '50x50' if @group.image.attached? %></td>
           <td><%= @group.name %></td>
           <td><%= @group.introduction %></td>
           <td>
-            <%# if @group.is_owned_by?(current_user) %>
-              <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
-            <%# end %>
+            <% if @group.owner_id == current_user.id %>
+              <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success" %>
+            <% else %>
+              <%= render 'public/group_users/join_button', group: @group %>
+            <% end %>
           </td>
         </tr>
       </table>
+
+      <% if @group.owner_id == current_user.id %>
+        <h2>申請者一覧</h2>
+        <%= render 'public/groups/users', group: @group, users: @group.applying_users %>
+        <h2>参加者一覧</h2>
+        <%= render 'public/groups/users', group: @group, users: @group.applobed_users %>
+        <h2>NG申請者一覧</h2>
+        <%= render 'public/groups/users', group: @group, users: @group.rejected_users %>
+      <% end %>
     </div>
   </div>
 </div>
+

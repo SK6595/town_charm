@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :comments, only: [:destroy]
     end
+    resources :groups, only: [:index, :destroy]
   end
 
   scope module: :public do
@@ -36,7 +37,9 @@ Rails.application.routes.draw do
       #:idがつかない、indexがないので6つのアクションになる
     end
 
-    resources :groups
+    resources :groups do
+      resource :group_users, only:[:create, :destroy]
+    end
 
     resources :users do
       resources :favorites, only:[:index]
@@ -49,5 +52,7 @@ Rails.application.routes.draw do
         get '/search', to: 'searches#search'
       end
     end
+
+    resources :group_users, only: [:update]
   end
 end

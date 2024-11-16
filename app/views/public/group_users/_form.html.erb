@@ -1,0 +1,6 @@
+<%= form_with model: group_user do |f| %>
+  <div class="d-flex">
+    <%= f.select :status, GroupUser.statuses_i18n.invert.to_a, {}, { class: "form-control" } %>
+    <%= f.submit "変更", class: "btn btn-warning ml-3" %>
+  </div>
+<% end %>

@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :group_users, dependent: :destroy
   # has_many :posts と同義
   #def posts
   #  Post.where(user_id: self.id)
@@ -43,6 +44,14 @@ class User < ApplicationRecord
 
   def self.search_for(content)
     User.where('name LIKE ?', '%' + content + '%')
+  end
+  
+  def join_group(group)
+    self.group_users.find_or_create_by(group: group)
+  end
+  
+  def leave_group(group)
+    self.group_users.find_by(group: group)&.destroy
   end
 
 end

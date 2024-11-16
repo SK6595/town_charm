@@ -91,6 +91,8 @@ GEM
     dotenv-rails (3.1.4)
       dotenv (= 3.1.4)
       railties (>= 6.1)
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.13.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
@@ -259,6 +261,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   dotenv-rails
+  enum_help
   faker
   image_processing (~> 1.2)
   jbuilder (~> 2.7)

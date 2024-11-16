@@ -1,0 +1,7 @@
+ja:
+  enums:
+    group_user:
+      status:
+        applying: 申請中
+        applobed: 参加済み
+        rejected: NG
