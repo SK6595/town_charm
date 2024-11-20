@@ -9,7 +9,17 @@ class Public::PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all
+    if params[:sort] == 'new'
+      @posts = Post.order(created_at: :desc)
+    elsif params[:sort] == 'old'
+      @posts = Post.order(created_at: :asc)
+    elsif params[:sort] == 'good'
+      @posts = Post.all.sort{|a,b| b.favorites.count <=> a.favorites.count}
+    elsif params[:sort] == 'comment'
+      @posts = Post.all.sort{|a,b| b.comments.count <=> a.comments.count}
+    else
+      @posts = Post.all
+    end
   end
 
   def show

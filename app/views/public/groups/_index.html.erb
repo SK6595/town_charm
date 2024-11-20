@@ -12,28 +12,15 @@
         <td><%= image_tag group.image, size: '50x50' if group.image.attached? %></td>
         <td><%= group.name %></td>
         <td><%= link_to 'グループの詳細はこちら', group, class: "group_#{group.id}" %></td>
-        <%# if group.is_owned_by?(current_user) %>
+        <% if group.is_ownered_by?(current_user) %>
           <td><%= link_to '編集', edit_group_path(group), class: "group_#{group.id}" %></td>
-        <%# end %>
+        <% end %>
         <td>
 
         </td>
         <td>
           <% if group.owner_id != current_user.id %>
             <%= render 'public/group_users/join_button', group: group %>
-            <% if group.group_user_by?(current_user) %>
-              <p>
-                <%= link_to group_group_users_path(group), method: :delete do %>
-                  group out..
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to group_group_users_path(group), method: :post do %>
-                  group join
-                <% end %>
-              </p>
-            <% end %>
           <% end %>
         </td>
       </tr>

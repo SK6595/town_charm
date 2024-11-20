@@ -40,18 +40,22 @@
           <td>
             <% if post.user_id != current_user.id %>
               <% if post.favorited_by?(current_user) %>
-              <p>
-                <%= link_to post_favorite_path(post), method: :delete do %>
-                  ❤️️️<%= post.favorites.count %>
-              <% end %>
-              </p>
-              <% else %>
-              <p>
-                <%= link_to post_favorite_path(post), method: :post do %>
-                  💙<%= post.favorites.count %>
-              <% end %>
-              </p>
-           <% end %>
+                <p>
+                  <%= link_to post_favorite_path(post), method: :delete do %>
+                    ❤️️️<%= post.favorites.count %>
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to post_favorite_path(post), method: :post do %>
+                    💙<%= post.favorites.count %>
+                  <% end %>
+                </p>
+             <% end %>
+             <% else %>
+               <p>
+                 <%= post.favorites.count %>
+               </p>
            <% end %>
           </td>
           <td>

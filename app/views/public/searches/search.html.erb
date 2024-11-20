@@ -1,7 +1,12 @@
 <% if @model == 'user' %>
-	<h3>Users search for "<%= @content %>"</h3>
+	<h3>ユーザー "<%= @content %>" の検索結果 <%= @records.count %>件</h3>
   <%= render 'public/users/users', users: @records %>
+
 <% elsif @model == 'post' %>
-	<h3>Posts search for "<%= @content %>"</h3>
+	<h3>投稿 "<%= @content %>" の検索結果 <%= @records.count %>件</h3>
   <%= render 'public/posts/posts', posts: @records %>
+
+<% elsif @model == 'group' %>
+	<h3>グループ名 "<%= @content %>" の検索結果 <%= @records.count %>件</h3>
+<%= render 'public/groups/index', groups: @records %>
 <% end %>

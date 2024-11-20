@@ -20,4 +20,12 @@ class Group < ApplicationRecord
   def group_user_by?(user)
     group_users.exists?(user_id: user.id)
   end
+
+  def is_ownered_by?(user)
+    self.owner == user
+  end
+
+  def self.search_for(content)
+    Group.where('name LIKE ?', '%'+content+'%')
+  end
 end
