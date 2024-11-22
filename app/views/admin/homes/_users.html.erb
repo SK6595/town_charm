@@ -3,20 +3,17 @@
     <tr>
       <th class="w-25">プロフィール画像</th>
       <th>投稿者</th>
-      <th class="w-25"></th>
     </tr>
   </thead>
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <!--<td>-->
-          <%#= link_to user_path(user) do %>
-          <%#= image_tag @user.get_profile_image(80, 80) %>
-          <%# end %>
-        <!--</td>-->
-        <td><%= image_tag user.get_profile_image(80,80) %></td>
+        <td>
+          <%= link_to admin_user_path(user) do %>
+            <%= image_tag user.get_profile_image(80, 80) %>
+          <% end %>
+        </td>
         <td><%= link_to user.name, admin_user_path(user) %></td>
-        <td><%#= link_to "投稿一覧", user_path(user) %><%= link_to "削除", admin_user_path(user), mehod: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>

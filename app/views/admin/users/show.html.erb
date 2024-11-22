@@ -1,5 +1,9 @@
 <h1>詳細ページ</h1>
 
 <div>
-  <%= link_to "退会", admin_user_path(@user), class: "btn btn-outline-danger mt-3", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% if @user.is_active %>
+    <%= link_to "退会", admin_user_path(@user), class: "btn btn-outline-danger mt-3", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% else %>
+    <%= link_to "復活", admin_user_path(@user), class: "btn btn-outline-warning mt-3", method: :patch, data: { confirm: "本当に復活しますか？" } %>
+  <% end %>
 </div>

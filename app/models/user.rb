@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  scope :active_users, -> { where(is_active: true) }
+  scope :deleted_users, -> { where(is_active: false) }
 
   validates :name, presence: true
 

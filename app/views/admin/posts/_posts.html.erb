@@ -17,7 +17,7 @@
         <% posts.each do |post| %>
         <tr>
           <td>
-            <%= link_to user_path(post.user) do %>
+            <%= link_to admin_user_path(post.user) do %>
             <%= image_tag post.user.get_profile_image(80, 80) %>
             <% end %>
           </td>

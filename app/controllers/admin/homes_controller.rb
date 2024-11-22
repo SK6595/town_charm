@@ -3,6 +3,7 @@ class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
 
   def top
-    @users = User.all
+    @active_users = User.active_users
+    @deleted_users = User.deleted_users
   end
 end
