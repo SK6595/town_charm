@@ -17,6 +17,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @post = Post.new
+    @notifications = @user.notifications
   end
 
   def edit

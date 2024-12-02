@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :group_users, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   # has_many :posts と同義
   #def posts
   #  Post.where(user_id: self.id)

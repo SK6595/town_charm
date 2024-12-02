@@ -54,5 +54,6 @@ Rails.application.routes.draw do
     end
 
     resources :group_users, only: [:update]
+    resources :notifications, only: [:update]
   end
 end
