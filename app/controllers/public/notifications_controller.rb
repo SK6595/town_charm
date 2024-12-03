@@ -11,6 +11,8 @@ class Public::NotificationsController < ApplicationController
       redirect_to post_path(notification.notifiable.post)
     when "Comment"
       redirect_to post_path(notification.notifiable.post)
+    when "Post"
+      redirect_to post_path(notification.notifiable)
     else
       redirect_to user_path(notification.notifiable.user)
     end

@@ -71,3 +71,5 @@ gem "net-pop"
 gem "net-imap"
 
 gem "enum_help"
+
+gem 'geocoder'

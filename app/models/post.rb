@@ -11,6 +11,7 @@ class Post < ApplicationRecord
   #end
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
 
   def get_image
@@ -28,6 +29,12 @@ class Post < ApplicationRecord
 
   def self.search_for(content)
     Post.where('title LIKE ?', '%'+content+'%')
+  end
+  
+  after_create do
+    user.followers.each do |user|
+    notifications.create(user_id: user.id)
+    end
   end
 
 end
