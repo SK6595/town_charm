@@ -11,7 +11,9 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application"; 
+import "../stylesheets/application";
+
+import './jpostal.js'
 
 Rails.start()
 Turbolinks.start()

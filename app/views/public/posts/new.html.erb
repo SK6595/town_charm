@@ -19,9 +19,18 @@
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
 
+  <div class="form-group">
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode, id: 'zipcode' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
   <%= f.submit '投稿' %>
 <% end %>
-
 
 
 

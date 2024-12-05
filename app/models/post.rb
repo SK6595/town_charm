@@ -3,6 +3,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :address, presence: true
 
   belongs_to :user
   #belonngs_to :userと同義
@@ -12,7 +13,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
-
+  
+  geocoded_by :address
+  after_validation :geocode
 
   def get_image
     unless image.attached?
