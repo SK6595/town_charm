@@ -14,6 +14,12 @@
   <%= f.text_field :title %>
   <h4>本文</h4>
   <%= f.text_area :body %>
+  <%= f.text_field :address %>
+
+  <div id="map" data-postid="<%= @post.id %>"></div>
+
   <%= f.submit '更新' %>　#保存でもOK
 
 <% end %>
+
+<%= javascript_pack_tag 'map_form', 'data-turbolinks-track': 'reload' %>

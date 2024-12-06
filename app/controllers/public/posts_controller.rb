@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    p @post = Post.find(params[:id])
     @comment = Comment.new
   end
 
@@ -67,7 +67,7 @@ end
 private
   # ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :body, :image)
+    params.require(:post).permit(:title, :body, :image, :address)
   end
 
   def correct_user

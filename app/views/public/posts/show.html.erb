@@ -2,6 +2,7 @@
   <%#= image_tag @post.get_image %>
   <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.body %></p>
+  <%= @post.address %>
   <p>投稿ユーザー画像：
   <%= link_to user_path(@post.user) do %>
   <%= image_tag @post.get_image %>
@@ -14,6 +15,8 @@
     <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   <% end %>
 </div>
+
+<div id="map" data-postid="<%= @post.id %>"></div>
 
 <div>
   <p>コメント件数：<%= @post.comments.count %></p>
@@ -63,3 +66,5 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
