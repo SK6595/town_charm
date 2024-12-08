@@ -1,7 +1,8 @@
 class Public::ChatsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:show]
   
   def show
-    @user = User.find(params[:id])
     rooms = current_user.user_rooms.pluck(:room_id)
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
 
@@ -26,5 +27,10 @@ class Public::ChatsController < ApplicationController
   private
   def chat_params
     params.require(:chat).permit(:message, :room_id)
+  end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_path unless current_user.followings.include?(@user)
   end
 end

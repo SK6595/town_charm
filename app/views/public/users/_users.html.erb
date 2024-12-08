@@ -40,7 +40,7 @@
                 </small>
               <% end %>
               <div>
-                <% if current_user != user %>
+                <% if current_user != user && current_user.followings.include?(user) %>
                   <small><%= link_to 'chatを始める', chat_path(user.id) %></small>
                 <% end %>
               </div>
