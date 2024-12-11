@@ -4,7 +4,7 @@
       <%= render 'public/posts/share', post: @post, user: @user %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h2>My投稿</h2>
+      <h2><%= @user == current_user ? 'My投稿' : '投稿' %></h2>
       <table class="table">
         <tr>
           <th>
@@ -41,6 +41,46 @@
         </tr>
         <% end %>
       </table>
+
+      <% if @user == current_user %>
+        <h2>タイムライン</h2>
+        <table class="table">
+          <tr>
+            <th>
+
+            </th>
+            <th>
+              タイトル
+            </th>
+            <th>
+              ご意見
+            </th>
+            <th>
+              コメント件数
+            </th>
+          </tr>
+          <% @following_posts.each do |post| %>
+            <tr>
+              <td>
+                <%= link_to user_path(post.user) do %>
+                <%= image_tag post.user.get_profile_image(80, 80) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to post_path(post.id) do %>
+                  <%= post.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= post.body %>
+              </td>
+              <td>
+                <%= post.comments.count %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+      <% end %>
     </div>
   </div>
 </div>

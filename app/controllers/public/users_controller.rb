@@ -18,6 +18,7 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts
     @post = Post.new
     @notifications = @user.notifications
+    @following_posts = Post.where(user_id: @user.followings.ids).order(created_at: :desc).take(5)
   end
 
   def edit

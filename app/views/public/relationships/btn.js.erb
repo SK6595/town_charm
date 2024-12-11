@@ -1,0 +1,15 @@
+<% if request.referer.match(/users$/) %>
+  $('#followings_<%= @user.id %>').html('<%= @user.followings.count %>');
+  $('#followers_<%= @user.id %>').html('<%= @user.followers.count %>');
+  $('#followings').html('<%= current_user.followings.count %>');
+  $('#followers').html('<%= current_user.followers.count %>');
+  $('#followings_<%= current_user.id %>').html('<%= current_user.followings.count %>');
+  $('#followers_<%= current_user.id %>').html('<%= current_user.followers.count %>');
+<% else %>
+  $('#followings').html('<%= @user.followings.count %>');
+  $('#followers').html('<%= @user.followers.count %>');
+<% end %>
+
+console.log(<%= @user.followings.count %>, <%= @user.followers.count %>)
+
+$('#relationships_<%= @user.id %>').html('<%= j(render partial: 'public/relationships/btn', locals: {user: @user}) %>');

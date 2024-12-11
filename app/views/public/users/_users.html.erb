@@ -25,13 +25,13 @@
           <td>
             <%= user.name %>
           </td>
-          <td><%= link_to user.followings.count, user_followings_path(user) %></td>
-          <td><%= link_to user.followers.count, user_followers_path(user), id: "followCount#{user.id}" %></td>
+          <td><%= link_to user.followings.count, user_followings_path(user), id: "followings_#{user.id}" %></td>
+          <td><%= link_to user.followers.count, user_followers_path(user), id: "followers_#{user.id}" %></td>
           <td>
             <%= link_to "ユーザー詳細", user_path(user) %><br>
             <% unless user == current_user %>
-            <div id="relationships<%= user.id %>">
-              <%= render 'relationships', follow_user: user %>
+            <div id="relationships_<%= user.id %>">
+              <%= render 'public/relationships/btn', user: user %>
             </div>
             <% end %>
           </td>
