@@ -20,15 +20,9 @@
 
 <div>
   <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-    <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-    <% if comment.user == current_user %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
-    <% end %>
-  <% end %>
-
+  <div id="comments">
+     <%= render 'comments', post: @post %>
+  </div>
   <% if @post.user_id != current_user.id %>
     <% if @post.favorited_by?(current_user) %>
       <p>
@@ -60,7 +54,7 @@
   <!--<%# end %>-->
 </div>
 <div>
-  <%= form_with model: [@post, @comment] do |f| %>
+  <%= form_with model: [@post, @comment],local: false do |f| %>
     <%= render 'layouts/error_messages', obj: f.object %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>

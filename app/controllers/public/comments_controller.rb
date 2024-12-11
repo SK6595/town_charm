@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     @comment.post_id = @post.id
     if @comment.save
       flash[:notice] = "コメントが送信されました"
-      redirect_to post_path(@post)
+      #redirect_to post_path(@post)
     else
       flash.now[:alert] = "コメントが送信できませんでした"
       render "public/posts/show"
@@ -14,8 +14,9 @@ class Public::CommentsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:post_id])
     Comment.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id])
+    #redirect_to post_path(params[:post_id])
   end
 
   private
