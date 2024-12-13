@@ -21,8 +21,10 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      flash[:notice] = '作成しました'
       redirect_to groups_path
     else
+      flash.now[:alert] = '作成に失敗しました'
       render 'new'
     end
 
@@ -33,8 +35,10 @@ class Public::GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
+      flash[:notice] = '作成しました'
       redirect_to groups_path
     else
+      flash.now[:alert] = '作成に失敗しました'
       render "edit"
     end
   end

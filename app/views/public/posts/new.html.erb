@@ -1,51 +1,21 @@
-<h1>新規投稿</h1>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
 
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: @post, url: '/posts', method: :post do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-
-  <div class="form-group">
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode, id: 'zipcode' %>
+    <h1>新規投稿</h1>
+    
+    <%= render 'public/posts/form', post: @post %>
+    
   </div>
-
-  <div class="form-group">
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
-
-  <%= f.submit '投稿' %>
-<% end %>
-
-
-
-
-
-
-
-
-
-
-
- <!--def list_parmas-->
- <!--  {title: "hogeohoge", body: "hodshovovds"}-->
- <!--end-->
-
- <!--def number-->
- <!--  0-->
- <!--end-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
+<script>
+  function jpostal() {
+    $('#zipcode').jpostal({
+      postcode : ['#zipcode'],
+      address : {
+        '#post_address': '%3%4%5'
+      }
+    });
+  }
+  jpostal();
+</script>

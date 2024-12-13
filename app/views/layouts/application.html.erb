@@ -39,13 +39,11 @@
               <% end %>
             </div>
         </li>
-        <li class="nav-item">
-          <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-light', data: {turbolinks: "false"}  %>
-        </li>
         <li>
           <!-- <i class="fa-solid fa-home"></i> Font Awesome fontawesome.com -->
-          <%= link_to user_path(current_user.id), class:"nav-link text-light" do %>
+          <%= link_to user_path(current_user.id), class:"nav-link text-light", data: { turbolinks: false } do %>
             <i class="fa-solid fa-home"></i> Myページ
+            
           <% end %>
         </li>
         <li>
@@ -128,7 +126,7 @@
         </div>
       </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
+
   </body>
 </html>
 

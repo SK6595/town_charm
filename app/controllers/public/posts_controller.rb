@@ -40,7 +40,10 @@ class Public::PostsController < ApplicationController
     else
       flash.now[:alert] = "投稿に失敗しました。" #キーをalertに変更
       @posts = Post.all
-      render :index
+      @user = current_user
+      @notifications = @user.notifications
+      @following_posts = Post.where(user_id: @user.followings.ids).order(created_at: :desc).take(5)
+      render 'public/users/show'
     end
   end
 

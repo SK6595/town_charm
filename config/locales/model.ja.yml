@@ -3,3 +3,10 @@ ja:
     attributes:
       comment:
         comment: コメント
+      group:
+        name: グループ名
+        introduction: 紹介文
+      post:
+        title: タイトル
+        body: 本文
+        address: 住所

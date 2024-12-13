@@ -4,6 +4,8 @@ class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
   has_many :users, through: :group_users
   belongs_to :owner, class_name: "User"
+  validates :name, presence: true
+  validates :introduction, presence: true
 
   def applying_users
     self.users.includes(:group_users).where('group_users.status': :applying)

@@ -1,13 +1,51 @@
-<%= form_with model:post, local:true do |f| %>
+<% if post.errors.any? %>
+  <%= post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: post do |f| %>
+  
   <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control book_title' %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
+  
   <div class="form-group">
-    <%= f.label :opinion %>
-    <%= f.text_area :body, class: 'form-control book_body' %>
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
   </div>
+
   <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
+    <%= f.label :image, "画像" %><br>
+    <%= f.file_field :image, accept: "image/*" %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :zipcode, "郵便番号" %>
+    <%= f.text_field :zipcode, id: 'zipcode', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+
+  <%= f.submit '投稿', class: "btn btn-primary" %>
 <% end %>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
+<script>
+  function jpostal() {
+    $('#zipcode').jpostal({
+      postcode : ['#zipcode'],
+      address : {
+        '#post_address': '%3%4%5'
+      }
+    });
+  }
+  jpostal();
+</script>
