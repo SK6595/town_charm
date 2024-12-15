@@ -36,6 +36,11 @@
           <% end %>
         </li>
         <li>
+          <%= link_to admin_comments_path, class:"nav-link text-dark" do %>
+            <i class="fa-solid fa-city"></i> コメント一覧
+          <% end %>
+        </li>
+        <li>
           <!-- <i class="fa-solid fa-sign-out-alt"></i> Font Awesome fontawesome.com -->
           <%= link_to destroy_admin_session_path, class:"nav-link text-dark", method: :delete do %>
             <i class="fa-solid fa-sign-out-alt"></i> ログアウト
