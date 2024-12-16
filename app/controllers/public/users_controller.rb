@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.where(is_active: true)
     @user = current_user
     @post = Post.new
   end

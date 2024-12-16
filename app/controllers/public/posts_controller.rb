@@ -10,20 +10,20 @@ class Public::PostsController < ApplicationController
   def index
     @post = Post.new
     if params[:sort] == 'new'
-      @posts = Post.order(created_at: :desc)
+      @posts = Post.active_user.page(params[:page]).per(10).order(created_at: :desc)
     elsif params[:sort] == 'old'
-      @posts = Post.order(created_at: :asc)
+      @posts = Post.active_user.page(params[:page]).per(10).order(created_at: :asc)
     elsif params[:sort] == 'good'
-      @posts = Post.all.sort{|a,b| b.favorites.count <=> a.favorites.count}
+      @posts = Post.active_user.page(params[:page]).per(10).sort{|a,b| b.favorites.count <=> a.favorites.count}
     elsif params[:sort] == 'comment'
-      @posts = Post.all.sort{|a,b| b.comments.count <=> a.comments.count}
+      @posts = Post.active_user.page(params[:page]).per(10).sort{|a,b| b.comments.count <=> a.comments.count}
     else
-      @posts = Post.all
+      @posts = Post.active_user.page(params[:page]).per(10)
     end
   end
 
   def show
-    p @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     @comment = Comment.new
   end
 

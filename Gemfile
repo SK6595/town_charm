@@ -73,3 +73,5 @@ gem "net-imap"
 gem "enum_help"
 
 gem 'geocoder'
+
+gem 'kaminari'

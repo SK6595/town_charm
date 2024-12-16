@@ -12,7 +12,7 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
         <div class="container">
       <%= link_to root_path , class:"navbar-brand" do %>
         <span>タウンチャーム</span>
@@ -43,7 +43,7 @@
           <!-- <i class="fa-solid fa-home"></i> Font Awesome fontawesome.com -->
           <%= link_to user_path(current_user.id), class:"nav-link text-light", data: { turbolinks: false } do %>
             <i class="fa-solid fa-home"></i> Myページ
-            
+
           <% end %>
         </li>
         <li>
@@ -53,19 +53,19 @@
           <% end %>
         </li>
         <li>
-          <%= link_to users_path, class:"nav-link text-light" do %>
+          <%= link_to users_path, class:"nav-link text-light", data: { turbolinks: false } do %>
             <i class="fa-solid fa-users"></i> 投稿者一覧
           <% end %>
         </li>
         <li>
           <!-- <i class="fa-solid fa-book-open"></i> Font Awesome fontawesome.com -->
-          <%= link_to posts_path, class:"nav-link text-light" do %>
+          <%= link_to posts_path, class:"nav-link text-light", data: { turbolinks: false } do %>
             <i class="fa-solid fa-city"></i> 投稿一覧
           <% end %>
         </li>
         <li>
           <!-- <i class="fa-solid fa-book-open"></i> Font Awesome fontawesome.com -->
-          <%= link_to user_favorites_path(current_user), class:"nav-link text-light" do %>
+          <%= link_to user_favorites_path(current_user), class:"nav-link text-light", data: { turbolinks: false } do %>
             <i class="fa-solid fa-heart"></i> Myいいね
           <% end %>
         </li>
@@ -76,12 +76,6 @@
           <% end %>
         </li>
       <% else %>
-        <li>
-          <!-- <i class="fa-solid fa-home"></i> Font Awesome fontawesome.com -->
-          <%= link_to root_path, class:"nav-link text-light" do %>
-           <i class="fa-solid fa-home"></i> マイページ
-          <% end %>
-        </li>
         <li>
           <!-- <i class="fa-solid fa-link"></i> Font Awesome fontawesome.com -->
           <%= link_to about_path, class:"nav-link text-light" do %>

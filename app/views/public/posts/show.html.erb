@@ -19,7 +19,7 @@
 <div id="map" data-postid="<%= @post.id %>"></div>
 
 <div>
-  <p>コメント件数：<%= @post.comments.count %></p>
+  <p>コメント件数：<%= @post.comments.active_user.count %></p>
   <div id="comments">
      <%= render 'comments', post: @post %>
   </div>

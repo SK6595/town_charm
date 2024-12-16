@@ -51,13 +51,21 @@ class User < ApplicationRecord
   def self.search_for(content)
     User.where('name LIKE ?', '%' + content + '%')
   end
-  
+
   def join_group(group)
     self.group_users.find_or_create_by(group: group)
   end
-  
+
   def leave_group(group)
     self.group_users.find_by(group: group)&.destroy
+  end
+
+  def active_for_authentication?
+    super && is_active?
+  end
+
+  def inactive_message
+    is_active ? super : :is_active
   end
 
 end

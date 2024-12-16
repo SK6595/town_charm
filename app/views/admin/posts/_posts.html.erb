@@ -23,7 +23,7 @@
           </td>
           <td>
             <%#= link_to user_path(post.user) do %>
-            <%= post.user.name %>
+            <%= "#{post.user.name} #{post.user.is_active ? '' : '(退会済)'}" %>
             <%# end %>
           </td>
           <td>

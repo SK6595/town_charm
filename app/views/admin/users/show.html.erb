@@ -1,4 +1,12 @@
-<h1>詳細ページ</h1>
+<h1>ユーザー詳細ページ</h1>
+
+<%= image_tag @user.get_profile_image(500, 500) %>
+
+<h4>メールアドレス</h4>
+<%= @user.email %>
+
+<h4 class="mt-3">ユーザー名</h4>
+<%= @user.name %>
 
 <div>
   <% if @user.is_active %>

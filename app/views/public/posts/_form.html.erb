@@ -8,12 +8,12 @@
 <% end %>
 
 <%= form_with model: post do |f| %>
-  
+
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
-  
+
   <div class="form-group">
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>
@@ -34,7 +34,7 @@
     <%= f.text_field :address, class: "form-control" %>
   </div>
 
-  <%= f.submit '投稿', class: "btn btn-primary" %>
+  <%= f.submit '投稿', class: "btn btn-outline-dark" %>
 <% end %>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>

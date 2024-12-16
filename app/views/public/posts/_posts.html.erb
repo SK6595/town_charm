@@ -41,8 +41,10 @@
             <%= render partial: 'public/posts/favorite', locals: {post: post} %>
           </td>
           <td>
-            <%= post.comments.count %>
+            <%= post.comments.active_user.count %>
           </td>
         </tr>
         <% end %>
       </table>
+
+      <%= paginate posts %>
