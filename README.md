@@ -46,11 +46,11 @@
 
 ## 使用素材
 
-- PhotoAC：
+- pixabay：https://pixabay.com/ja/
 
-- Canva：
+- Unsplash：https://unsplash.com/ja
 
-- Unsplash：
+- unDraw：https://undraw.co/
 ​
 ## 開発環境
 - OS：Linux(CentOS)

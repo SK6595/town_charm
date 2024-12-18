@@ -13,7 +13,7 @@
 <% if current_user != user && current_user.followings.include?(user) %>
   <div class="mt-2">
     <small>
-      <%= link_to "chatを始める", chat_path(user.id), class: 'btn btn-outline-info btn-sm' %>
+      <%= link_to "チャットを開始", chat_path(user.id), class: 'btn btn-outline-info btn-sm' %>
     </small>
   </div>
 <% end %>
