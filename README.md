@@ -30,6 +30,8 @@
 ​
 ## 設計書
 
+※初期構想で現行の仕様とは若干異なります。
+
 - UI Flows：
   https://drive.google.com/file/d/1ZSJ_Z0de5BmkourPERVEl4LTOEAM1JNj/view?usp=sharing
 

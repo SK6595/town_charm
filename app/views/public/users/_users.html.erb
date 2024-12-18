@@ -20,15 +20,17 @@
             <%# end %>
           <!--</td>-->
           <td>
-            <%= image_tag user.get_profile_image(80,80) %>
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image(80,80) %>
+            <% end %>
           </td>
           <td>
-            <%= user.name %>
+            <%= link_to user.name, user_path(user) %>
           </td>
           <td><%= link_to user.followings.count, user_followings_path(user), id: "followings_#{user.id}" %></td>
           <td><%= link_to user.followers.count, user_followers_path(user), id: "followers_#{user.id}" %></td>
           <td>
-            <%= link_to "ユーザー詳細", user_path(user) %><br>
+            <%#= link_to "ユーザー詳細", user_path(user) %>
             <% unless user == current_user %>
             <div id="relationships_<%= user.id %>">
               <%= render 'public/relationships/btn', user: user %>

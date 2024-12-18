@@ -15,6 +15,25 @@ import "../stylesheets/application";
 
 //import './jpostal.js'
 
+import Swiper from 'swiper/swiper-bundle.js';
+import 'swiper/swiper-bundle.css';
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+const opt = {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  }
+}
+
+// Swiperを実行(初期化)
+$(document).on('turbolinks:load', function() {
+    let swiper = new Swiper('.swiper',opt);
+});

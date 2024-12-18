@@ -26,7 +26,7 @@
           </td>
           <td>
             <%#= link_to user_path(post.user) do %>
-            <%= post.user.name %>
+            <%= link_to post.user.name, user_path(post.user) %>
             <%# end %>
           </td>
           <td>

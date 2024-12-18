@@ -85,3 +85,14 @@ body {
   border-color: transparent transparent transparent #d6fdff;
   translate: 100% -50%;
 }
+
+.swiper-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+:root {
+  --swiper-navigation-color: #ffffff;
+  --swiper-pagination-color: #ffffff;
+}

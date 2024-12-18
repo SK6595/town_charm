@@ -13,10 +13,10 @@
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>投稿一覧</h2>
-      <%= link_to '新着順', posts_path(sort: 'new') %>&nbsp;|&nbsp;
-      <%= link_to '古い順', posts_path(sort: 'old') %>&nbsp;|&nbsp;
-      <%= link_to 'いいね順', posts_path(sort: 'good') %>&nbsp;|&nbsp;
-      <%= link_to 'コメント順', posts_path(sort: 'comment') %>
+      <%= link_to '新着順', posts_path(sort: 'new'), class: "btn btn-outline-secondary btn-sm" %>&nbsp;|&nbsp;
+      <%= link_to '古い順', posts_path(sort: 'old'), class: "btn btn-outline-secondary btn-sm" %>&nbsp;|&nbsp;
+      <%= link_to 'いいね順', posts_path(sort: 'good'), class: "btn btn-outline-secondary btn-sm" %>&nbsp;|&nbsp;
+      <%= link_to 'コメント順', posts_path(sort: 'comment'), class: "btn btn-outline-secondary btn-sm" %>
       <%= render 'public/posts/posts', posts: @posts %>
     </div>
   </div>

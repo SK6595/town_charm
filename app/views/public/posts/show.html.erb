@@ -1,64 +1,67 @@
-<div>
-  <%#= image_tag @post.get_image %>
-  <p>タイトル：<%= @post.title %></p>
-  <p>本文：<%= @post.body %></p>
-  <%= @post.address %>
-  <p>投稿ユーザー画像：
-  <%= link_to user_path(@post.user) do %>
-  <%= image_tag @post.get_image %>
-  <% end %>
-  </p>
-  <p>ユーザーネーム：<%= link_to @post.user.name, user_path(@post.user) %></p>
-  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "編集", edit_post_path(@post.id), data: { turbolinks: false } %>
-    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  <% end %>
-</div>
+<h2><%= @post.title %></h2>
+<div class="row">
+  <div class="col">
+    <!--情報-->
+    <div>
+      <%#= image_tag @post.get_image %>
+      <div class="row">
+        <div class="col-3">
+          <p>
+            <%= link_to user_path(@post.user) do %>
+            <%= image_tag @post.get_image %>
+            <% end %>
+          </p>
+          <p><%= link_to @post.user.name, user_path(@post.user) %></p>
+        </div>
+        <div class="col-9">
+          <p><%= @post.body %></p>
+          <%= @post.address %>
+          <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          <% if @post.user == current_user %>
+            <%= link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-secondary mr-2', data: { turbolinks: false } %>
+            <%= link_to "削除", post_path(@post.id), class: 'btn btn-outline-danger', method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!--情報-->
+    <!--コメント-->
+    <div>
+      <div>
+        <p>コメント件数：<%= @post.comments.active_user.count %></p>
+        <div id="comments">
+           <%= render 'comments', post: @post %>
+        </div>
+        <% if @post.user_id != current_user.id %>
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_favorite_path(@post), method: :delete do %>
+                ❤️<%= @post.favorites.count %>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_favorite_path(@post), method: :post do %>
+                💙<%= @post.favorites.count %>
+              <% end %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
 
-<div id="map" data-postid="<%= @post.id %>"></div>
-
-<div>
-  <p>コメント件数：<%= @post.comments.active_user.count %></p>
-  <div id="comments">
-     <%= render 'comments', post: @post %>
+      <div>
+        <%= form_with model: [@post, @comment],local: false do |f| %>
+          <%= render 'layouts/error_messages', obj: f.object %>
+          <%= f.text_area :comment, rows: '5', class: 'form-control', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する", class: 'btn btn-outline-secondary mt-3' %>
+        <% end %>
+      </div>
+    </div>
+    <!--コメント-->
   </div>
-  <% if @post.user_id != current_user.id %>
-    <% if @post.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_favorite_path(@post), method: :delete do %>
-          ❤️<%= @post.favorites.count %>
-        <% end %>
-      </p>
-      <% else %>
-      <p>
-        <%= link_to post_favorite_path(@post), method: :post do %>
-          💙<%= @post.favorites.count %>
-        <% end %>
-      </p>
-    <% end %>
-  <% end %>
-
-  <!--<%# if @post.favorited_by?(current_user) %>-->
-  <!--  <p>-->
-  <!--    <%#= link_to post_favorite_path(@post), method: :delete do %>-->
-  <!--      ♥<%#= @post.favorites.count %> いいね-->
-  <!--    <%# end %>-->
-  <!--  </p>-->
-  <!--  <%# else %>-->
-  <!--  <p>-->
-  <!--    <%#= link_to post_favorite_path(@post), method: :post do %>-->
-  <!--      ♡<%#= @post.favorites.count %> いいね-->
-  <!--    <%# end %>-->
-  <!--  </p>-->
-  <!--<%# end %>-->
-</div>
-<div>
-  <%= form_with model: [@post, @comment],local: false do |f| %>
-    <%= render 'layouts/error_messages', obj: f.object %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+  <!--地図-->
+  <div class="col"><div id="map" data-postid="<%= @post.id %>"></div></div>
+  <!--地図-->
 </div>
 
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
