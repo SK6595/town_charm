@@ -7,8 +7,16 @@
     <div class='col-md-8 offset-md-1'>
       <h2>グループ詳細</h2>
       <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>グループ画像</th>
+            <th>グループ名</th>
+            <th>グループ紹介文</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
         <tr>
-          <td><%= image_tag @group.image, size: '50x50' if @group.image.attached? %></td>
+          <td><%= image_tag @group.get_image(80,80) %></td>
           <td><%= @group.name %></td>
           <td><%= @group.introduction %></td>
           <td>

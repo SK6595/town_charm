@@ -1,7 +1,7 @@
 <% post.comments.active_user.each do |comment| %>
-  <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-  <%= comment.user.name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <p><%= image_tag comment.user.get_profile_image(50,50) %><%= link_to " "+comment.user.name, user_path(comment.user) %></p>
+  <p>投稿日時：<%= comment.created_at.strftime('%Y/%m/%d') %></p>
+  <%= comment.comment %>
   <% if comment.user == current_user %>
     <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
   <% end %>

@@ -1,2 +1,5 @@
 $('#comments').html("<%= j(render '/public/posts/comments', post: @post) %>");
+$('#comments_count').html("コメント件数："+<%= @comments_count %>);
+
+$('#comments').html("<%= j(render '/public/posts/comments', post: @post) %>");
 

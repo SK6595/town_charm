@@ -6,11 +6,11 @@ class Public::SearchesController < ApplicationController
 		@content = params[:content]
 		# @method = params[:method]
 		if @model == 'user'
-			@records = User.search_for(@content)
+			@records = User.search_for(@content).page(params[:page]).per(10)
 		elsif @model == 'group'
-			@records = Group.search_for(@content)
+			@records = Group.search_for(@content).page(params[:page]).per(10)
 		else
-			@records = Post.search_for(@content)
+			@records = Post.search_for(@content).page(params[:page]).per(10)
 		end
 	end
 end
