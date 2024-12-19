@@ -27,28 +27,29 @@
     <!--情報-->
     <!--コメント-->
     <div>
+      <% if @post.user_id != current_user.id %>
+        <% if @post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :delete do %>
+              ❤️<%= @post.favorites.count %>
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :post do %>
+              💙<%= @post.favorites.count %>
+            <% end %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
       <div>
         <p>コメント件数：<%= @post.comments.active_user.count %></p>
         <div id="comments">
            <%= render 'comments', post: @post %>
         </div>
-        <% if @post.user_id != current_user.id %>
-          <% if @post.favorited_by?(current_user) %>
-            <p>
-              <%= link_to post_favorite_path(@post), method: :delete do %>
-                ❤️<%= @post.favorites.count %>
-              <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to post_favorite_path(@post), method: :post do %>
-                💙<%= @post.favorites.count %>
-              <% end %>
-            </p>
-          <% end %>
-        <% end %>
       </div>
-
       <div>
         <%= form_with model: [@post, @comment],local: false do |f| %>
           <%= render 'layouts/error_messages', obj: f.object %>

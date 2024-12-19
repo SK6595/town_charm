@@ -1,20 +1,21 @@
-<h1>投稿者一覧</h1>
-
-
-
-<ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">アクティブなUser</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">削除済みUser</a>
-  </li>
-</ul>
-<div class="tab-content">
-  <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-    <%= render 'admin/homes/users', users: @active_users %>
-  </div>
-  <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-    <%= render 'admin/homes/users', users: @deleted_users %>
-  </div>
-</div>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+    <div class="card mt-5">
+      <div class="card-body">
+        <h2 class="d-flex justify-content-center my-4">投稿者一覧</h2>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">アクティブなUser</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">削除済みUser</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+              <%= render 'admin/homes/users', users: @active_users %>
+            </div>
+            <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+              <%= render 'admin/homes/users', users: @deleted_users %>
+            </div>
+          </div>

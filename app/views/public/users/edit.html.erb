@@ -18,12 +18,12 @@
           </div>
 
           <div class="mb-3">
-            <%= f.label "投稿画像" %><br>
+            <%= f.label "プロフィール画像" %><br>
             <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
           </div>
 
           <div class="my-4">
-            <%= f.submit "変更", class: "btn btn-primary btn-block" %>
+            <%= f.submit "変更", class: "btn btn-outline-primary btn-block" %>
           </div>
         <% end %>
         <%= link_to "退会", user_path(@user), class: "btn btn-outline-danger mt-3", method: :delete, data: { confirm: "本当に削除しますか？" } if @user.present? && @user == current_user %>

@@ -11,9 +11,9 @@
       <tr>
         <td><%= image_tag group.image, size: '50x50' if group.image.attached? %></td>
         <td><%= group.name %></td>
-        <td><%= link_to 'グループの詳細はこちら', group, class: "group_#{group.id}" %></td>
+        <td><%= link_to 'グループの詳細はこちら', group, class: "group_#{group.id} btn-sm" %></td>
         <% if group.is_ownered_by?(current_user) %>
-          <td><%= link_to '編集', edit_group_path(group), class: "group_#{group.id}" %></td>
+          <td><%= link_to '編集', edit_group_path(group), class: "group_#{group.id} btn btn-outline-secondary" %></td>
         <% end %>
         <td>
 

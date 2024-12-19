@@ -2,15 +2,15 @@
   <div class="row">
     <div class="mx-auto col-12 col-md-10">
       <div class="text-center mt-3">
-        <h1 class="px-3 mx-auto">welcome to<i class="fa-solid fa-city"></i><strong>タウンチャーム</strong> !!</h1>
+        <h1 class="px-3 mx-auto">ようこそ<i class="fa-solid fa-city"></i><strong>タウンチャームへ</strong> !</h1>
       </div>
       <% unless user_signed_in? %>
         <div class="btn-wrapper col-12 col-md-6 mx-auto mt-3">
           <div class="row">
-             <%= link_to "Log in", new_user_session_path, class:"btn btn-info btn-sm btn-block mb-3 sign_in" %>
+             <%= link_to "ログイン", new_user_session_path, class:"btn btn-outline-info btn-sm  mb-3 sign_in" %>
           </div>
           <div class="row">
-            <%= link_to "Sign up", new_user_registration_path, class:"btn btn-success btn-sm btn-block sign_up" %>
+            <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-success btn-sm sign_up" %>
           </div>
         </div>
       <% end %>
@@ -22,10 +22,19 @@
   <div class="swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-         <%= image_tag 'city-5772121_1280.jpg', class: 'swiper-img' %>
+         <%= image_tag 'tokyo-8650941_1280.jpg', class: 'swiper-img' %>
       </div>
       <div class="swiper-slide">
-         <%= image_tag 'road-7704729_1280.jpg', class: 'swiper-img' %>
+         <%= image_tag 'buildings-5655593_1280.jpg', class: 'swiper-img' %>
+      </div>
+      <div class="swiper-slide">
+         <%= image_tag 'shopping-5513364_1280.jpg', class: 'swiper-img' %>
+      </div>
+      <div class="swiper-slide">
+         <%= image_tag 'road-7704729_1280 (1).jpg', class: 'swiper-img' %>
+      </div>
+      <div class="swiper-slide">
+         <%= image_tag 'nichika-sakurai-kNyxT2yUIoc-unsplash.jpg', class: 'swiper-img' %>
       </div>
     </div>
     <!-- ページネーションの要素 -->
