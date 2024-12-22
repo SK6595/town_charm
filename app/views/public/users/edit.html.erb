@@ -23,7 +23,7 @@
           </div>
 
           <div class="my-4">
-            <%= f.submit "変更", class: "btn btn-outline-primary btn-block" %>
+            <%= f.submit "更新", class: "btn btn-outline-secondary btn-block" %>
           </div>
         <% end %>
         <%= link_to "退会", user_path(@user), class: "btn btn-outline-danger mt-3", method: :delete, data: { confirm: "本当に削除しますか？" } if @user.present? && @user == current_user %>

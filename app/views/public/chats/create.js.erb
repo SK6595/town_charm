@@ -1,14 +1,2 @@
-$('.message').append(`
-  <div class="d-flex flex-column">
-    <% if @chat.user_id == current_user.id %>
-      <div class="ml-auto">
-        <p class="speech_right"><%= @chat.message %></p><span><%= @chat.user.name %></span>
-      </div>
-    <% else %>
-      <div class="mr-auto">
-        <span><%= @chat.user.name %></span><p class="speech_left"><%= @chat.message %></p>
-      </div>
-    <% end %>
-  </div>
-`);
+$('.message').append(`<%= render 'public/chats/chat', chat: @chat %>`);
 $('input[type=text]').val("")

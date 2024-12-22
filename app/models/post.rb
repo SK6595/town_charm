@@ -28,7 +28,7 @@ class Post < ApplicationRecord
   end
 
   def self.search_for(content)
-    Post.where('title LIKE ?', '%'+content+'%')
+    Post.where('title LIKE ?', "%#{content}%")
   end
 
   after_create do

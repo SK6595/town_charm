@@ -7,10 +7,10 @@
       <% unless user_signed_in? %>
         <div class="btn-wrapper col-12 col-md-6 mx-auto mt-3">
           <div class="row">
-             <%= link_to "ログイン", new_user_session_path, class:"btn btn-outline-info btn-sm  mb-3 sign_in mx-auto" %>
+             <%= link_to "ログイン", new_user_session_path, class:"btn btn-info btn-sm  mb-3 sign_in mx-auto" %>
           </div>
           <div class="row">
-            <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-success btn-sm sign_up mx-auto" %>
+            <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-sm sign_up mx-auto" %>
           </div>
         </div>
       <% end %>

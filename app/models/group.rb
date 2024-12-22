@@ -36,6 +36,6 @@ class Group < ApplicationRecord
   end
 
   def self.search_for(content)
-    Group.where('name LIKE ?', '%'+content+'%')
+    Group.where('name LIKE ?', "%#{content}%")
   end
 end

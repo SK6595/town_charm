@@ -1,6 +1,7 @@
 class Public::ChatsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:show]
+  before_action :destroy_user_check, only: [:destroy]
   
   def show
     rooms = current_user.user_rooms.pluck(:room_id)
@@ -22,7 +23,12 @@ class Public::ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     render :validater unless @chat.save
   end
-
+  
+  def destroy
+    @chat.destroy
+    flash[:success] = "削除しました"
+    redirect_back(fallback_location: root_url)
+  end
   
   private
   def chat_params
@@ -32,5 +38,10 @@ class Public::ChatsController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to root_path unless current_user.followings.include?(@user)
+  end
+  
+  def destroy_user_check
+    @chat = current_user.chats.find_by_id(params[:id])
+    redirect_to root_path unless @chat
   end
 end

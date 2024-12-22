@@ -1,0 +1,18 @@
+<div class="d-flex flex-column">
+  <% if chat.user_id == current_user.id %>
+    <div class="ml-auto">
+      <%= link_to chat_path(chat), method: :delete, data:{confirm:"削除しますか？"} do %>
+      <p class="speech_right"><%= chat.message %></p>
+      <% end %>
+      <span><%= chat.user.name %></span>
+      <!--<div class="d-flex justify-content-end">
+        <%#= link_to "削除する", chat_path(chat), method: :delete, class: 'badge badge-secondary' %>
+      </div>
+      -->
+    </div>
+  <% else %>
+    <div class="mr-auto">
+      <span><%= chat.user.name %></span><p class="speech_left"><%= chat.message %></p>
+    </div>
+  <% end %>
+</div>

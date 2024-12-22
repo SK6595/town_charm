@@ -20,7 +20,8 @@ user_attributes.each do |attributes|
   User.create!(attributes.merge({ password: "123456" }))
 end
 
-[1, 4, 5].each do |n|
+(1..5).each do |n|
+#[1, 2, 3, 4, 5].each do |n|
   user = User.find(n)
   user.profile_image.attach(io: File.open(Rails.root.join("db/fixtures/images/user_#{n}.jpg")), filename: "user_#{n}.jpg")
 end

@@ -49,7 +49,7 @@ class User < ApplicationRecord
   end
 
   def self.search_for(content)
-    User.where('name LIKE ?', '%' + content + '%')
+    User.where('name LIKE ?', "%#{content}%")
   end
 
   def join_group(group)

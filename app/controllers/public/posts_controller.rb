@@ -14,9 +14,9 @@ class Public::PostsController < ApplicationController
     elsif params[:sort] == 'old'
       @posts = Post.active_user.page(params[:page]).per(10).order(created_at: :asc)
     elsif params[:sort] == 'good'
-      @posts = Post.active_user.page(params[:page]).per(10).sort{|a,b| b.favorites.count <=> a.favorites.count}
+      @posts = Post.active_user.joins(:favorites).group('favorites.post_id').order('count(favorites.post_id) desc').page(params[:page]).per(10)#.sort{|a,b| b.favorites.count <=> a.favorites.count}
     elsif params[:sort] == 'comment'
-      @posts = Post.active_user.page(params[:page]).per(10).sort{|a,b| b.comments.count <=> a.comments.count}
+      @posts = Post.active_user.joins(:comments).group('comments.post_id').order('count(comments.post_id) desc').page(params[:page]).per(10)#.sort{|a,b| b.comments.count <=> a.comments.count}
     else
       @posts = Post.active_user.page(params[:page]).per(10)
     end

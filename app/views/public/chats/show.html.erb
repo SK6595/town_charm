@@ -1,19 +1,7 @@
 <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
 
 <div class="message" style="width: 400px;">
-  <% @chats.each do |chat| %>
-    <div class="d-flex flex-column">
-      <% if chat.user_id == current_user.id %>
-        <div class="ml-auto">
-          <p class="speech_right"><%= chat.message %></p><span><%= chat.user.name %></span>
-        </div>
-      <% else %>
-        <div class="mr-auto">
-          <span><%= chat.user.name %></span><p class="speech_left"><%= chat.message %></p>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render @chats %>
 </div>
 
 <div class="errors">
@@ -24,3 +12,11 @@
   <%= f.text_field :message %>
   <%= f.hidden_field :room_id %>
 <% end %>
+
+<!--<div>
+  <#%= form_with model: [@post, @comment],local: false do |f| %>
+    <#%= render 'layouts/error_messages', obj: f.object %>
+    <#%= f.text_area :comment, rows: '5', class: 'form-control', placeholder: "コメントをここに" %>
+    <#%= f.submit "送信する", class: 'btn btn-outline-secondary mt-3' %>
+  <#% end %>
+</div>--!>

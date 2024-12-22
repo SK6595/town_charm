@@ -57,6 +57,6 @@ Rails.application.routes.draw do
 
     resources :group_users, only: [:update]
     resources :notifications, only: [:update]
-    resources :chats, only: [:show, :create]
+    resources :chats, only: [:show, :create, :destroy]
   end
 end
