@@ -1,19 +1,9 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="mx-auto col-12 col-md-10">
       <div class="text-center mt-3">
         <h1 class="px-3 mx-auto">ようこそ<i class="fa-solid fa-city"></i><strong>タウンチャームへ</strong> !</h1>
       </div>
-      <% unless user_signed_in? %>
-        <div class="btn-wrapper col-12 col-md-6 mx-auto mt-3">
-          <div class="row">
-             <%= link_to "ログイン", new_user_session_path, class:"btn btn-info btn-sm  mb-3 sign_in mx-auto" %>
-          </div>
-          <div class="row">
-            <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-sm sign_up mx-auto" %>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
@@ -43,6 +33,19 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>
+</div>
+
+<div>
+  <% unless user_signed_in? %>
+    <div class="btn-wrapper col-12 col-md-6 mx-auto mt-3">
+      <div class="row">
+         <%= link_to "ログイン", new_user_session_path, class:"btn btn-info btn-sm  mb-3 sign_in mx-auto" %>
+      </div>
+      <div class="row">
+        <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-sm sign_up mx-auto" %>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <!--<br>-->

@@ -1,1 +1,5 @@
-$("#favorite_<%= @post.id %>").html('<%= j(render partial: 'public/posts/favorite', locals: {post: @post}) %>')
+<% if request.referer.match(/\/users\/[0-9]{1,}\/favorites$/).nil? %>
+  $("#favorite_<%= @post.id %>").html('<%= j(render partial: 'public/posts/favorite', locals: {post: @post}) %>')
+<% else %>
+  $("#favorites").html('<%= j(render partial: 'public/favorites/favorites', locals: {posts: @posts}) %>')
+<% end %>

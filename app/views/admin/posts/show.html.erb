@@ -4,30 +4,69 @@
       <div class="card-body">
         <h2 class="d-flex justify-content-center my-4">投稿詳細</h2>
 
-        <div>
-          <%#= image_tag @post.get_image %>
-          <p>タイトル：<%= @post.title %></p>
-          <p>本文：<%= @post.body %></p>
-          <p>投稿画像：
-            <%= link_to admin_user_path(@post.user) do %>
-            <%= image_tag @post.get_image %>
-            <% end %>
-          </p>
-          <p>投稿ユーザー名：<%= link_to @post.user.name, admin_user_path(@post.user) %></p>
-          <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-          <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "投稿を本当に削除しますか？", class: "btn btn-danger" %>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <table class="table">
+              <tr>
+                <th>タイトル</th>
+                <td><%= @post.title %></td>
+              </tr>
+              <tr>
+                <th>本文</th>
+                <td><%= @post.body %></td>
+              </tr>
+              <tr>
+                <th>投稿画像</th>
+                <td>
+                  <%= link_to admin_user_path(@post.user) do %>
+                    <%= image_tag @post.get_image, class: "w-100" %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>投稿ユーザー名</th>
+                <td><%= link_to @post.user.name, admin_user_path(@post.user) %></td>
+              </tr>
+              <tr>
+                <th>投稿日</th>
+                <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+              <tr>
+                <th colspan=2>
+                  <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "投稿を本当に削除しますか？", class: "btn btn-danger" %>
+                </th>
+              </tr>
+            </table>
+          </div>
         </div>
-
-        <div>
+    
+        <% if @post.comments.any? %>
           <p class="mt-3">コメント件数：<%= @post.comments.count %></p>
-          <% @post.comments.each do |comment| %>
-            <p>コメント投稿ユーザー画像：<%= image_tag comment.user.get_profile_image(100,100) %></p>
-            <p>コメント投稿ユーザー名：<%#= link_to @comment.user.name, admin_user_path(@comment.user) %><%= "#{comment.user.name} #{comment.user.is_active ? '' : '(退会済)'}" %></p>
-            <p class="mt-3">コメント投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %></p>
-            <p>コメント内容：<%= comment.comment %></p>
-            <%= link_to "コメント削除", admin_post_comment_path(comment.post, comment), method: :delete, "data-confirm": "コメントを本当に削除しますか？", class: "btn btn-danger" %>
-          <% end %>
-        </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>コメント投稿ユーザー画像</th>
+                <th>コメント投稿ユーザー名</th>
+                <th>コメント投稿日</th>
+                <th>コメント内容</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @post.comments.each do |comment| %>
+                <tr>
+                  <td><%= image_tag comment.user.get_profile_image(100,100) %></td>
+                  <td><%= link_to "#{comment.user.name} #{comment.user.is_active ? '' : '(退会済)'}", admin_user_path(comment.user) %></td>
+                  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= comment.comment %></td>
+                  <td><%= link_to "コメント削除", admin_post_comment_path(comment.post, comment), method: :delete, "data-confirm": "コメントを本当に削除しますか？", class: "btn btn-danger" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>コメントはありません</p>
+        <% end %>
       </div>
     </div>
   </div>

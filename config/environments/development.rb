@@ -75,4 +75,19 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.active_job.queue_adapter = :inline
   config.hosts.clear
+
+  #デプロイの場合は、production.rbファイルに下記内容を入れる。※hostをIPアドレスに変える。httpにする。
+  config.action_mailer.raise_delivery_errors = false
+  host = 'f287a4df77a74ca895e42647f9c9cf82.vfs.cloud9.ap-northeast-1.amazonaws.com'
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+     :port => 587,
+     :domain => 'gmail.com',
+     :address => "smtp.gmail.com",
+     :user_name => ENV["GMAIL_USERNAME"],
+     :password => ENV["GMAIL_PASSWORD"],
+     :authentication => :plain,
+     :enable_starttls_auto => true
+  }
 end

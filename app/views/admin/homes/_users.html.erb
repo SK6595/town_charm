@@ -1,19 +1,23 @@
 <table class="table">
   <thead>
     <tr>
-      <th class="w-25">プロフィール画像</th>
+      <th width="15%"></th>
+      <th>プロフィール画像</th>
       <th>投稿者</th>
+      <th>email</th>
     </tr>
   </thead>
   <tbody>
     <% users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td>
           <%= link_to admin_user_path(user) do %>
             <%= image_tag user.get_profile_image(80, 80) %>
           <% end %>
         </td>
         <td><%= link_to user.name, admin_user_path(user) %></td>
+        <td><%= user.email %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,9 +1,5 @@
 <h1>Myいいね</h1>
 
-<div class="container px-5 px-sm-0">
-  <% if @posts.blank? %>
-  <p>いいねした投稿はまだありません</p>
-  <% else %>
-  <%= render 'public/posts/posts', posts: @posts %>
-  <% end %>
+<div id="favorites" class="container px-5 px-sm-0">
+  <%= render 'public/favorites/favorites', posts: @posts %>
 </div>

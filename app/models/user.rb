@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  GUEST_USER_EMAIL = "guest@example.com"
+  GUEST_USER_EMAIL = "guest@test.com"
 
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|

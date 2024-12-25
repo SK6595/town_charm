@@ -9,8 +9,9 @@
 </div>
 
 <%= form_with model: @chat, data: {remote: true} do |f| %>
-  <%= f.text_field :message %>
+  <%= f.text_area :message %>
   <%= f.hidden_field :room_id %>
+  <%= f.submit "送信する", class: 'btn btn-outline-secondary mt-3' %>
 <% end %>
 
 <!--<div>

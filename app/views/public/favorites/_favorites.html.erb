@@ -1,0 +1,5 @@
+<% if posts.blank? %>
+  <p>いいねした投稿はまだありません</p>
+<% else %>
+  <%= render 'public/posts/posts', posts: posts %>
+<% end %>

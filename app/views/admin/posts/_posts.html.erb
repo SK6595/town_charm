@@ -7,12 +7,6 @@
           <th>
             タイトル
           </th>
-          <th>
-            ご意見
-          </th>
-          <th>
-            コメント件数
-          </th>
         </tr>
         <% posts.each do |post| %>
         <tr>
@@ -30,12 +24,6 @@
             <%= link_to admin_post_path(post.id) do %>
               <%= post.title %>
             <% end %>
-          </td>
-          <td>
-            <%= post.body %>
-          </td>
-          <td>
-            <%= post.comments.count %>
           </td>
         </tr>
         <% end %>

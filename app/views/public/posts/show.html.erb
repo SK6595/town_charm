@@ -28,29 +28,13 @@
         </div>
       </div>
     </div>
-    <!--情報-->
-    <!--コメント-->
-    <div>
-      <% if @post.user_id != current_user.id %>
-        <% if @post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorite_path(@post), method: :delete do %>
-              ❤️<%= @post.favorites.count %>
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_favorite_path(@post), method: :post do %>
-              💙<%= @post.favorites.count %>
-            <% end %>
-          </p>
-        <% end %>
-      <% end %>
+    <div id="favorite_<%= @post.id %>">
+      <%= render partial: 'public/posts/favorite', locals: {post: @post} %>
     </div>
     <div>
       <div>
         <p id="comments_count">コメント件数：<%= @post.comments.active_user.count %></p>
-        <div id="comments">
+        <div id="comments" class="row">
            <%= render 'comments', post: @post %>
         </div>
       </div>
@@ -62,7 +46,6 @@
         <% end %>
       </div>
     </div>
-    <!--コメント-->
   </div>
   <!--地図-->
   <div class="col"><div id="map" data-postid="<%= @post.id %>"></div></div>
