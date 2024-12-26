@@ -103,3 +103,9 @@ body {
 main {
   min-height: calc(100vh - 60px - 43.2px - 1.5rem - 3rem);
 }
+
+.about-img {
+  height: 230px;
+  width: 100%;
+  object-fit: cover;
+}

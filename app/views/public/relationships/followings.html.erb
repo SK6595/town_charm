@@ -1,5 +1,6 @@
-<ul>
-  <% User.find(params[:user_id]).followings.each do |f| %>
-   <li><%= f.name %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="d-flex justify-content-center my-4">「フォロー」一覧</h2>
+    <%= render 'public/users/users', users: @users %>
+  </div>
+</div>
