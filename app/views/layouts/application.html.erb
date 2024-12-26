@@ -10,12 +10,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
         <div class="container">
       <%= link_to root_path , class:"navbar-brand" do %>
-        <span>タウンチャーム</span>
+        <span class="logo">タウンチャーム</span>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -100,10 +100,11 @@
       </div>
       </nav>
     </header>
-    <% flash.each do |type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" ) if message.present? %>
-    <% end %>
-    <main>
+
+    <main class="flex-grow-1">
+      <% flash.each do |type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{type == 'notice' ? 'success' : 'danger'}" ) if message.present? %>
+      <% end %>
       <div class="container">
         <% if user_signed_in? && request.path_info != '/admins/sign_in' %>
           <%= render 'public/searches/form' %>

@@ -11,10 +11,10 @@
             ご意見
           </th>
           <th>
-            いいね
+            コメント件数
           </th>
           <th>
-            コメント件数
+            いいね
           </th>
         </tr>
         <% posts.each do |post| %>
@@ -37,11 +37,11 @@
           <td>
             <%= post.body %>
           </td>
-          <td id="favorite_<%= post.id %>">
-            <%= render partial: 'public/posts/favorite', locals: {post: post} %>
-          </td>
           <td>
             <%= post.comments.active_user.count %>
+          </td>
+          <td id="favorite_<%= post.id %>">
+            <%= render partial: 'public/posts/favorite', locals: {post: post} %>
           </td>
         </tr>
         <% end %>
