@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
   validates :comment, presence: true, length: { maximum: 500 }
 
   after_create do
-    notifications.create(user_id: user_id) unless post.user_id == user_id
+    notifications.create(user_id: post.user_id) unless post.user_id == user_id
   end
 
   scope :active_user, -> { includes(:user).where(user: {is_active: true}) }

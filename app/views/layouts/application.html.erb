@@ -31,8 +31,17 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <% if current_user.notifications.any? %>
                 <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
-                <% current_user.notifications.limit(5).order(created_at: :desc).each do |notification| %>
-                  <%= link_to "#{notification_message(notification)} ( #{notification.read ? '既読' : '未読'} )", notification_path(notification), method: :patch, class: "dropdown-item" %>
+                <% notification_count = 0 %>
+                <% current_user.notifications.order(created_at: :desc).each do |notification| %>
+                  <% if notification.notifiable.user.is_active %>
+                    <%= link_to "#{notification_message(notification)} ( #{notification.read ? '既読' : '未読'} )", notification_path(notification), method: :patch, class: "dropdown-item" %>
+                    <%
+                      notification_count += 1
+                      if notification_count > 4
+                        break
+                      end
+                    %>
+                  <% end %>
                 <% end %>
               <% else %>
                 <span class="dropdown-item disabled">未読の通知はありません</span>

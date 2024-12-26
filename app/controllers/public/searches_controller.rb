@@ -6,7 +6,7 @@ class Public::SearchesController < ApplicationController
 		@content = params[:content]
 		# @method = params[:method]
 		if @model == 'user'
-			@records = User.search_for(@content).page(params[:page]).per(10)
+			@records = User.search_for(@content).where(is_active: true).page(params[:page]).per(10)
 		elsif @model == 'group'
 			@records = Group.search_for(@content).page(params[:page]).per(10)
 		else

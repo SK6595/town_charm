@@ -17,10 +17,10 @@ class Public::RelationshipsController < ApplicationController
   end
   
   def followings
-    @users = User.find(params[:user_id]).followings
+    @users = User.find(params[:user_id]).followings.where(is_active: true)
   end
   
   def followers
-    @users = User.find(params[:user_id]).followers
+    @users = User.find(params[:user_id]).followers.where(is_active: true)
   end
 end

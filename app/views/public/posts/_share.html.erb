@@ -25,13 +25,13 @@
   <div class="col-md-6">
     <%= link_to "フォロー", user_followings_path(user) %>
     <span id="followings">
-      <%= user.followings.count %>
+      <%= user.followings.where(is_active: true).count %>
     </span>
   </div>
   <div class="col-md-6">
     <%= link_to "フォロワー", user_followers_path(user) %>
     <span id="followers">
-      <%= user.followers.count %>
+      <%= user.followers.where(is_active: true).count %>
     </span>
   </div>
 </div>

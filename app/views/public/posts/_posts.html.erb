@@ -2,13 +2,10 @@
         <tr>
           <th></th>
           <th>
-            氏名
+            ユーザー名
           </th>
           <th>
             タイトル
-          </th>
-          <th>
-            ご意見
           </th>
           <th>
             コメント件数
@@ -31,11 +28,8 @@
           </td>
           <td>
             <%= link_to post_path(post.id) do %>
-              <%= post.title %>
+              <%= post.title.truncate(15) %>
             <% end %>
-          </td>
-          <td>
-            <%= post.body %>
           </td>
           <td>
             <%= post.comments.active_user.count %>
