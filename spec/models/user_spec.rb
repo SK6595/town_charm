@@ -1,11 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  
   it ":name, :email, :password があれば有効であること" do
-    user = User.new
-    user.name = "taro"
-    user.email = "taro@test.com"
-    user.password = "password"
+    #user = User.new
+    #user.name = "taro"
+    #user.email = "taro@test.com"
+    #user.password = "password"
+    #expect(user).to be_valid
+    
+    #上のコードをFactoryBotで書き直すと下のようになる
+    user = FactoryBot.build(:user)
     expect(user).to be_valid
   end
   
@@ -23,5 +28,10 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to_not include("は6文字以上で入力してください")
   end
   
-  it "重複した:email は無効であること"
+  it "重複した:email は無効であること" do
+    FactoryBot.create(:user)
+    user = FactoryBot.build(:user)
+    user.valid?
+    expect(user.errors[:email]).to include("はすでに存在します")
+  end
 end

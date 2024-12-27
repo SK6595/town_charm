@@ -97,6 +97,11 @@ GEM
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.13.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.0)
@@ -297,6 +302,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   enum_help
+  factory_bot_rails
   faker
   geocoder
   image_processing (~> 1.2)
