@@ -15,11 +15,12 @@
     </tr>
   </tbody>
 </table>
-<%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-  <!-- <i class="fas fa-user-cog"></i> Font Awesome fontawesome.com -->
-  <i class="fa-solid fa-user-gear"></i>
+<% if current_user == user %>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+    <!-- <i class="fas fa-user-cog"></i> Font Awesome fontawesome.com -->
+    <i class="fa-solid fa-user-gear"></i>
+  <% end %>
 <% end %>
-
 <!--data-confirm": "本当に削除しますか？"と同義 -->
 <div class="row">
   <div class="col-md-6">
