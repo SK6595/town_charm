@@ -32,7 +32,13 @@
               <% if current_user.notifications.any? %>
                 <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
                 <% notification_count = 0 %>
-                <% current_user.notifications.order(created_at: :desc).each do |notification| %>
+                <%
+                  @notifications = current_user.notifications.order(created_at: :desc).select { |notification |
+                   pp notification.notifiable.user.is_active?
+                    notification.notifiable.user.is_active?
+                  }
+                %>
+                <% @notifications.each do |notification| %>
                   <% if notification.notifiable.user.is_active %>
                     <%= link_to "#{notification_message(notification)} ( #{notification.read ? '既読' : '未読'} )", notification_path(notification), method: :patch, class: "dropdown-item" %>
                     <%
