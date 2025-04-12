@@ -26,7 +26,12 @@
        <li class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               通知
-              <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
+                <%
+                  @notifications = current_user.notifications.where(read: false).select { |notification |
+                    notification.notifiable.user.is_active?
+                  }
+                %>
+              <span class="badge badge-danger"><%= @notifications.count %></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <% if current_user.notifications.any? %>
@@ -34,7 +39,6 @@
                 <% notification_count = 0 %>
                 <%
                   @notifications = current_user.notifications.order(created_at: :desc).select { |notification |
-                   pp notification.notifiable.user.is_active?
                     notification.notifiable.user.is_active?
                   }
                 %>
