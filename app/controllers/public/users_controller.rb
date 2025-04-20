@@ -36,11 +36,16 @@ class Public::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    #@user = User.find_by(id: params[:id])
-    @user.update(is_active: false)
-    sign_out(@user)
-    flash[:notice] = "削除しました。"
-    redirect_to new_user_registration_path
+    if @user.is_guest
+      flash[:notice] = "ゲストユーザーは退会できません"
+      redirect_to user_path(@user.id)
+    else
+      #@user = User.find_by(id: params[:id])
+      @user.update(is_active: false)
+      sign_out(@user)
+      flash[:notice] = "削除しました。"
+      redirect_to new_user_registration_path
+    end
   end
 
   def re_sign_in
